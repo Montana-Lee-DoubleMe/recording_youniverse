@@ -1,5 +1,7 @@
 using System.ComponentModel;
+using System;
 using System.IO;
+using System.Globalization;
 using UnityEditor;
 using UnityEditor.Recorder;
 using UnityEditor.Recorder.Input;
@@ -51,7 +53,7 @@ public class videoRecorderScript : MonoBehaviour
         m_Settings.AudioInputSettings.PreserveAudio = m_RecordAudio;
 
         // Simple file name (no wildcards) so that FileInfo constructor works in OutputFile getter.
-        m_Settings.OutputFile = mediaOutputFolder.FullName + "/" + "video";
+        m_Settings.OutputFile = mediaOutputFolder.FullName + "/" + DateTime.Now.ToString("yyyyMMddHHmm");
 
         // Setup Recording
         controllerSettings.AddRecorderSettings(m_Settings);
