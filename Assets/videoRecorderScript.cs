@@ -14,6 +14,8 @@ public class videoRecorderScript : MonoBehaviour
     public bool m_RecordAudio = true;
     internal MovieRecorderSettings m_Settings = null;
 
+    public float timer = 60.0f;
+
     public FileInfo OutputFile
     {
         get
@@ -65,6 +67,18 @@ public class videoRecorderScript : MonoBehaviour
         m_RecorderController.StartRecording();
 
         Debug.Log($"Started recording for file {OutputFile.FullName}");
+    }
+
+    void Update() 
+    {
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
+        {
+            EditorApplication.isPlaying = false;
+        }
     }
 
     void OnDisable()
